@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/foreign_exchange_search_nav_graph"
+    app:startDestination="@id/currenciesFragment"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/currenciesFragment"
+        android:name="com.anibalbastias.android.vuro.dualcamerapp.ui.MainFragment"
+        android:label="CurrenciesFragment"
+        tools:layout="@layout/fragment_main">
+
+    </fragment>
+
+</navigation>

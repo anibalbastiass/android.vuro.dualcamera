@@ -5,6 +5,8 @@ import com.anibalbastias.android.vuro.dualcamerapp.di.module.ApplicationModule
 import com.anibalbastias.android.vuro.dualcamerapp.di.module.VuroAPIModule
 import com.anibalbastias.android.vuro.dualcamerapp.di.module.VuroRepositoryModule
 import com.anibalbastias.android.vuro.dualcamerapp.di.module.ViewModelModule
+import com.anibalbastias.android.vuro.dualcamerapp.ui.MainActivity
+import com.anibalbastias.android.vuro.dualcamerapp.ui.MainFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -18,9 +20,9 @@ import javax.inject.Singleton
 )
 
 interface ApplicationComponent : BaseApplicationComponent, FragmentInjector {
-//    fun inject(mainActivity: MainActivity)
+    fun inject(application: MainActivity)
 }
 
 interface FragmentInjector {
-//    fun inject(currenciesFragment: CurrenciesFragment)
+    fun inject(mainFragment: MainFragment)
 }

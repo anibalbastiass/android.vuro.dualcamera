@@ -17,11 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <meta-data
-            android:name="com.anibalbastias.android.vuro.dualcamerapp.presentation.VuroGlideModule"
-            android:value="AppGlideModule" />
-
-        <activity android:name="com.anibalbastias.android.vuro.dualcamerapp.split.MainActivity">
+        <activity android:name="com.anibalbastias.android.vuro.dualcamerapp.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

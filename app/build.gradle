@@ -34,9 +34,7 @@ android {
         targetCompatibility = '1.8'
     }
 
-    dynamicFeatures = [
-            ':features:dualcamera'
-    ]
+    dynamicFeatures = [':features:dualcamera']
 
     lintOptions {
         abortOnError false
@@ -71,18 +69,13 @@ android {
         enabled = true
     }
 
-
     // APK Release name
-//    setProperty("archivesBaseName", "CocktailApp-v${rootProject.ext.appforeignExchangeVersionName}")
+    setProperty("archivesBaseName", "VuroApp-v${rootProject.ext.appvuroVersionName}")
 }
 
 kapt {
     generateStubs = true
 }
-
-//configurations {
-//    compile.exclude group: 'androidx.annotation', module: 'annotation'
-//}
 
 androidExtensions {
     experimental = true
@@ -112,7 +105,7 @@ dependencies {
 
 
 
-    def presentationDependencies = rootProject.ext.foreignExchangeDependencies
+    def presentationDependencies = rootProject.ext.vuroDependencies
 
     // Essential libraries
     implementation presentationDependencies.kotlinStdlib

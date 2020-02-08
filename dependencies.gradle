@@ -26,9 +26,9 @@ ext {
 
 
 
-    // Foreign Exchange App
-    appforeignExchangeVersionCode = 1
-    appforeignExchangeVersionName = '1.0.0'
+    // Vuro App
+    appvuroVersionCode = 1
+    appvuroVersionName = '1.0.0'
 
     androidBuildToolsVersion = '"29.0.2"'
     androidMinSdkVersion = 16
@@ -85,11 +85,11 @@ ext {
     fragmentTestingVersion = '1.1.0'
     mockkVersion = '1.9.3'
 
-    globalforeignExchangeDependencies = [
+    globalvuroDependencies = [
             FOREIGN_EXCHANGE_BASE_ENDPOINT: "https://api.exchangeratesapi.io/"
     ]
 
-    foreignExchangeDependencies = [daggerAndroidCompiler   : "com.google.dagger:dagger-android-processor:${daggerVersion}",
+    vuroDependencies = [daggerAndroidCompiler   : "com.google.dagger:dagger-android-processor:${daggerVersion}",
                                    daggerAndroid           : "com.google.dagger:dagger-android-support:${daggerVersion}",
                                    daggerCompiler          : "com.google.dagger:dagger-compiler:${daggerVersion}",
                                    dagger                  : "com.google.dagger:dagger:${daggerVersion}",
