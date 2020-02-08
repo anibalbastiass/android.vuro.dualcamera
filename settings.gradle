@@ -1,0 +1,15 @@
+include ':app',
+
+        ':core:remote',
+        ':core:presentation',
+        ':core:domain',
+        ':core:testing',
+
+        ':features:dualcamera'
+
+project(':core:remote').projectDir = new File('core/remote')
+project(':core:domain').projectDir = new File('core/domain')
+project(':core:presentation').projectDir = new File('core/presentation')
+project(':core:testing').projectDir = new File('core/testing')
+
+project(':features:dualcamera').projectDir = new File('features/dualcamera')
