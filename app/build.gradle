@@ -1,7 +1,10 @@
 apply plugin: 'com.android.application'
+
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs"
+apply from: 'jacoco.gradle'
 
 android {
 
@@ -35,6 +38,18 @@ android {
             ':features:dualcamera'
     ]
 
+    lintOptions {
+        abortOnError false
+        warning 'InvalidPackage'
+    }
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+        exclude 'META-INF/androidx.exifinterface_exifinterface.version'
+        pickFirst 'lib/armeabi-v7a/libtool-checker.so'
+        pickFirst 'lib/arm64-v8a/libtool-checker.so'
+        pickFirst 'lib/x86/libtool-checker.so'
+        pickFirst 'lib/x86_64/libtool-checker.so'
+    }
     dexOptions {
         jumboMode = true
     }
@@ -56,13 +71,18 @@ android {
         enabled = true
     }
 
+
     // APK Release name
 //    setProperty("archivesBaseName", "CocktailApp-v${rootProject.ext.appforeignExchangeVersionName}")
 }
 
-configurations {
-    compile.exclude group: 'androidx.annotation', module: 'annotation'
+kapt {
+    generateStubs = true
 }
+
+//configurations {
+//    compile.exclude group: 'androidx.annotation', module: 'annotation'
+//}
 
 androidExtensions {
     experimental = true
@@ -70,14 +90,6 @@ androidExtensions {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    // Libraries which can be re-used in other modules should use the `api` keyword.
-    // This way they can be shared with dependent feature modules.
-
-    implementation project(':core:remote')
-    implementation project(':core:domain')
-    implementation project(':core:presentation')
-    implementation project(':core:testing')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}"
     implementation 'androidx.annotation:annotation:1.1.0'
@@ -94,4 +106,98 @@ dependencies {
 
     // When using API in base, some dependencies might have to be re-added for test implementation.
     androidTestImplementation "androidx.appcompat:appcompat:${versions.appcompat}"
+
+
+
+
+
+
+    def presentationDependencies = rootProject.ext.foreignExchangeDependencies
+
+    // Essential libraries
+    implementation presentationDependencies.kotlinStdlib
+    implementation presentationDependencies.androidCompatv7
+    implementation presentationDependencies.constraintLayout
+    implementation presentationDependencies.androidArchExt
+    implementation presentationDependencies.androidDesign
+    implementation presentationDependencies.androidSupportv4
+    implementation presentationDependencies.androidCardView
+    implementation presentationDependencies.androidRecyclerView
+    implementation presentationDependencies.multidex
+
+    // ViewModel and LiveData
+    implementation presentationDependencies.androidArchExt
+    kapt presentationDependencies.androidArchCompiler
+
+    // Retrofit + Okhttp
+    implementation presentationDependencies.retrofit2
+    implementation presentationDependencies.retrofit2Converter
+    implementation presentationDependencies.rxAndroid
+    implementation presentationDependencies.retrofit2RxAdapter
+    implementation presentationDependencies.retrofit2Mock
+    implementation presentationDependencies.gson
+    implementation presentationDependencies.okHttpLoggingInterceptor
+    implementation presentationDependencies.okhttp
+    implementation presentationDependencies.okhttpUrlconnection
+
+    // Dagger
+    implementation presentationDependencies.dagger
+    implementation presentationDependencies.daggerAndroid
+    kapt presentationDependencies.daggerCompiler
+    kapt presentationDependencies.daggerAndroidCompiler
+
+    // Java8 support for Life cycles
+    implementation presentationDependencies.lifeCycleJava8Dep
+
+    // RxJava support for Room
+    implementation presentationDependencies.roomRxJava
+    implementation presentationDependencies.lcReactiveStreams
+
+    // Glide
+    api presentationDependencies.glide
+    kapt presentationDependencies.glideCompiler
+
+    // Jetpack Navigation
+    def archComponentsDep = rootProject.ext.archComponentsDep
+    implementation archComponentsDep.activityKtx
+    implementation archComponentsDep.fragmentKtx
+    implementation archComponentsDep.navigationKtx
+    implementation archComponentsDep.coreKtx
+    implementation archComponentsDep.saveStateKtx
+
+    /* Coroutines */
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+
+    // Test Dependencies
+    def testDependencies = rootProject.ext.testCoreDep
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.mockitoKotlin
+    testImplementation testDependencies.jUnit
+    testImplementation testDependencies.robolectric
+    testImplementation testDependencies.archTesting
+    testImplementation testDependencies.testCore
+    testImplementation testDependencies.runner
+    testImplementation testDependencies.xTestRules
+    testImplementation testDependencies.extJUnit
+    testImplementation testDependencies.espressoCore
+    testImplementation testDependencies.extTruth
+    testImplementation testDependencies.xEspressoCore
+    testImplementation testDependencies.xEspressoContrib
+    testImplementation testDependencies.espressoIntents
+    testImplementation testDependencies.mockk
+
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.2.1"
+
+    implementation testDependencies.fragment
+    debugImplementation testDependencies.fragmentTesting
+
+    androidTestImplementation testDependencies.testRunner
+    androidTestImplementation testDependencies.testRules
+    androidTestImplementation testDependencies.espressoIntents
+    androidTestImplementation(testDependencies.espressoCore, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 }
