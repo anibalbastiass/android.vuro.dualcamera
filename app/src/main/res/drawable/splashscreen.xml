@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/primaryColor" />
+    <item
+        android:bottom="0dp"
+        android:left="340dp"
+        android:right="340dp"
+        android:top="0dp">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/vuro_logo" />
+    </item>
+</layer-list>

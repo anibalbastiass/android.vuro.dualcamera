@@ -1,0 +1,2 @@
+include ':app', ':features:dualcamera'
+project(':features:dualcamera').projectDir = new File('features/dualcamera')

@@ -1,0 +1,82 @@
+apply plugin: 'jacoco'
+
+
+jacoco {
+    toolVersion = "0.7.7.201606060606"
+}
+
+android {
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+    }
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+    }
+
+    def fileFilter = [
+            '**/*$ViewInjector*.*',
+            '**/*$ViewBinder*.*',
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'android/**/*.*',
+            '**/*_ViewBinding*.*',
+            '**/*_Factory.*',
+            '**/*_MembersInjector.*',
+            '**/*$$Parcelable*.*',
+            'com/anibalbastias/foreignexchange/base/**',
+            'com/anibalbastias/foreignexchange/di/**',
+            'com/anibalbastias/foreignexchange/domain/base/**',
+            'com/anibalbastias/foreignexchange/presentation/util/**',
+            'com/anibalbastias/foreignexchange/presentation/ui/currencies/spinner/**',
+            '**/*$ShapeDrawable.*'
+    ]
+
+
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+
+    task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest', group: 'jacocoReport') {
+
+        reports {
+            html.enabled = true
+        }
+
+        sourceDirectories = files([mainSrc])
+        classDirectories = files([debugTree])
+        executionData = files("${buildDir}/jacoco/testDebugUnitTest.exec")
+    }
+
+    task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn: 'jacocoTestReport', group: 'jacocoReport') {
+
+        sourceDirectories = files([mainSrc])
+        classDirectories = files([debugTree])
+        executionData = files("${buildDir}/jacoco/testDebugUnitTest.exec")
+
+
+        violationRules {
+            setFailOnViolation(true)
+
+            rule {
+                limit {
+                    minimum = 0.80
+                }
+            }
+        }
+    }
+
+    task jacocoTestCoverageViewResult(type: Exec, dependsOn: 'jacocoTestReport') {
+        executable "sh"
+        args "-c", "open '${buildDir}/reports/jacoco/jacocoTestReport/html/index.html'"
+    }
+}
+

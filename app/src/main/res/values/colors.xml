@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#252525</color>
+    <color name="primaryDarkColor">#181818</color>
+    <color name="colorAccent">#b9dc4a</color>
+
+    <color name="textPrimaryColor">#3a3a3a</color>
+    <color name="circle2Color">#71d1e5</color>
+    <color name="normalTextColor">#4a4a4a</color>
+
+    <color name="grey">#666666</color>
+
+    <!-- Error view-->
+    <color name="white">#ffffff</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="backgroundColor">#eeeeee</color>
+    <color name="black">#000000</color>
+    <color name="blackGradient">#6a0b0808</color>
+</resources>
