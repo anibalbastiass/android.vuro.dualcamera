@@ -32,11 +32,10 @@ android {
             '**/*_Factory.*',
             '**/*_MembersInjector.*',
             '**/*$$Parcelable*.*',
-            'com/anibalbastias/foreignexchange/base/**',
-            'com/anibalbastias/foreignexchange/di/**',
-            'com/anibalbastias/foreignexchange/domain/base/**',
-            'com/anibalbastias/foreignexchange/presentation/util/**',
-            'com/anibalbastias/foreignexchange/presentation/ui/currencies/spinner/**',
+            'com/anibalbastias/android/vuro/dualcamerapp/base/**',
+            'com/anibalbastias/android/vuro/dualcamerapp/di/**',
+            'com/anibalbastias/android/vuro/dualcamerapp/domain/base/**',
+            'com/anibalbastias/android/vuro/dualcamerapp/presentation/util/**',
             '**/*$ShapeDrawable.*'
     ]
 

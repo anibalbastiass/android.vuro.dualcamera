@@ -4,12 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.anibalbastias.android.vuro.dualcamerapp.base.navigation.BaseNavigationListener
 import com.anibalbastias.android.vuro.dualcamerapp.base.navigation.event.Event
-import com.anibalbastias.android.vuro.dualcamerapp.base.view.BaseViewModel
 import javax.inject.Inject
 
-/**
- * Created by anibalbastias on 2019-09-08.
- */
 
 class NavBaseViewModel @Inject constructor() : BaseViewModel() {
 

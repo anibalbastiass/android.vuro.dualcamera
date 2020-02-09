@@ -34,8 +34,8 @@ object StorageExtension {
         )
     }
 
-    var latestVideoFilePath: String = ""
-    var latestVideoFilePath2: String = ""
+    var latestVideoFilePathFront: String = ""
+    var latestVideoFilePathBack: String = ""
 
     val videoFilePath: String
         @SuppressLint("SimpleDateFormat")

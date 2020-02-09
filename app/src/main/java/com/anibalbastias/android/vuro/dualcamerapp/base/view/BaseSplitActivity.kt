@@ -6,7 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import com.anibalbastias.android.vuro.BuildConfig
 import com.anibalbastias.android.vuro.R
-import com.anibalbastias.android.vuro.dualcamerapp.presentation.LanguageHelper
+import com.anibalbastias.android.vuro.dualcamerapp.ui.util.LanguageHelper
 import com.google.android.play.core.splitcompat.SplitCompat
 import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.google.android.play.core.splitinstall.SplitInstallRequest

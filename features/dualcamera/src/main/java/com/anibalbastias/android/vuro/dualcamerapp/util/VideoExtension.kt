@@ -5,7 +5,7 @@ import android.os.CountDownTimer
 import android.util.Log
 import android.view.MotionEvent
 import com.anibalbastias.android.vuro.dualcamerapp.feature.widget.VuroTouchVideoView
-import com.anibalbastias.android.vuro.dualcamerapp.presentation.VuroApplication.Companion.appContext
+import com.anibalbastias.android.vuro.dualcamerapp.ui.VuroApplication.Companion.appContext
 import com.daasuu.camerarecorder.CameraRecordListener
 import com.daasuu.camerarecorder.CameraRecorder
 import com.daasuu.camerarecorder.CameraRecorderBuilder
@@ -86,23 +86,11 @@ object VideoExtension {
     fun setupFrontCameraView() {
         vuroTouchVideoViewFront = null
         vuroTouchVideoViewFront = VuroTouchVideoView(appContext)
-        vuroTouchVideoViewFront?.setTouchListener(object : VuroTouchVideoView.TouchListener {
-            override fun onTouch(event: MotionEvent?, width: Int, height: Int) {
-                if (cameraRecorderFront == null) return
-                cameraRecorderFront?.changeManualFocusPoint(event?.x!!, event.y, width, height)
-            }
-        })
     }
 
     fun setupBackCameraView() {
         vuroTouchVideoViewBack = null
         vuroTouchVideoViewBack = VuroTouchVideoView(appContext)
-        vuroTouchVideoViewBack!!.setTouchListener(object : VuroTouchVideoView.TouchListener {
-            override fun onTouch(event: MotionEvent?, width: Int, height: Int) {
-                if (cameraRecorderBack == null) return
-                cameraRecorderBack?.changeManualFocusPoint(event?.x!!, event.y, width, height)
-            }
-        })
     }
 
 
@@ -116,7 +104,7 @@ object VideoExtension {
                 }
 
                 override fun onRecordComplete() {
-                    StorageExtension.latestVideoFilePath = frontCameraFilepath!!
+                    StorageExtension.latestVideoFilePathFront = frontCameraFilepath!!
                     StorageExtension.exportMp4ToGallery(
                         appContext,
                         frontCameraFilepath
@@ -154,7 +142,7 @@ object VideoExtension {
                 }
 
                 override fun onRecordComplete() {
-                    StorageExtension.latestVideoFilePath2 = backCameraFilepath2!!
+                    StorageExtension.latestVideoFilePathBack = backCameraFilepath2!!
 
                     StorageExtension.exportMp4ToGallery(
                         appContext,

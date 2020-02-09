@@ -5,7 +5,6 @@ import android.os.Bundle
 import com.anibalbastias.android.vuro.R
 import com.anibalbastias.android.vuro.dualcamerapp.base.extension.toast
 import com.anibalbastias.android.vuro.dualcamerapp.base.view.BaseSplitActivity
-import com.anibalbastias.android.vuro.dualcamerapp.presentation.appComponent
 import com.anibalbastias.android.vuro.dualcamerapp.ui.util.checkPermissions
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 

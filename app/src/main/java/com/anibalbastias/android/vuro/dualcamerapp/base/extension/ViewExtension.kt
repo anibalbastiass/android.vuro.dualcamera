@@ -4,16 +4,17 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.os.Handler
-import androidx.core.content.res.ResourcesCompat
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.res.ResourcesCompat
 import com.anibalbastias.android.vuro.R
+
 
 fun ViewGroup.inflate(layoutRes: Int): View =
     LayoutInflater.from(context).inflate(layoutRes, this, false)
@@ -106,4 +107,15 @@ fun Toolbar.setArrowUpToolbar(context: Activity) {
 fun Toolbar.setNoArrowUpToolbar(context: Activity) {
     (context as AppCompatActivity).setSupportActionBar(this)
     context.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+}
+
+fun enableDisableViewGroup(viewGroup: ViewGroup, enabled: Boolean) {
+    val childCount = viewGroup.childCount
+    for (i in 0 until childCount) {
+        val view = viewGroup.getChildAt(i)
+        view.isEnabled = enabled
+        if (view is ViewGroup) {
+            enableDisableViewGroup(view, enabled)
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package com.anibalbastias.android.vuro.dualcamerapp.presentation
+package com.anibalbastias.android.vuro.dualcamerapp.ui.util
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -13,18 +13,24 @@ object LanguageHelper {
     lateinit var prefs: SharedPreferences
     var language: String
         get() {
-            return prefs.getString(PREFS_LANG, LANG_EN)!!
+            return prefs.getString(
+                PREFS_LANG,
+                LANG_EN
+            )!!
         }
         set(value) {
-            prefs.edit().putString(PREFS_LANG, value).apply()
+            prefs.edit().putString(
+                PREFS_LANG, value).apply()
         }
 
     fun init(ctx: Context){
-        prefs = ctx.getSharedPreferences(PREFS_LANG, Context.MODE_PRIVATE)
+        prefs = ctx.getSharedPreferences(
+            PREFS_LANG, Context.MODE_PRIVATE)
     }
 
     fun getLanguageConfigurationContext(ctx: Context): Context {
-        val conf = getLanguageConfiguration()
+        val conf =
+            getLanguageConfiguration()
         return ctx.createConfigurationContext(conf)
     }
 
