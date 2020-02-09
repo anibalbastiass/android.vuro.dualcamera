@@ -58,22 +58,6 @@ object VideoExtension {
 
     fun releaseCamera() {
         if (vuroTouchVideoViewFront != null) {
-            vuroTouchVideoViewFront?.onPause()
-        }
-        if (vuroTouchVideoViewBack != null) {
-            vuroTouchVideoViewBack?.onPause()
-        }
-        if (cameraRecorderFront != null) {
-            cameraRecorderFront?.stop()
-            cameraRecorderFront?.release()
-            cameraRecorderFront = null
-        }
-        if (cameraRecorderBack != null) {
-            cameraRecorderBack?.stop()
-            cameraRecorderBack?.release()
-            cameraRecorderBack = null
-        }
-        if (vuroTouchVideoViewFront != null) {
             videoListener?.onReleaseFrontCamera()
             vuroTouchVideoViewFront = null
         }
@@ -81,6 +65,10 @@ object VideoExtension {
             videoListener?.onReleaseBackCamera()
             vuroTouchVideoViewBack = null
         }
+
+        cameraRecorderFront?.stop()
+        cameraRecorderBack?.stop()
+        recordCount?.cancel()
     }
 
     fun setupFrontCameraView() {

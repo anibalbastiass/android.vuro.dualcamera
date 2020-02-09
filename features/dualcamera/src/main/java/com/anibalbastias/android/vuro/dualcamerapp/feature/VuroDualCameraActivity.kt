@@ -3,8 +3,6 @@ package com.anibalbastias.android.vuro.dualcamerapp.feature
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import android.view.ViewGroup
-import androidx.core.view.children
 import com.anibalbastias.android.vuro.dualcamerapp.R
 import com.anibalbastias.android.vuro.dualcamerapp.base.extension.invisible
 import com.anibalbastias.android.vuro.dualcamerapp.base.extension.visible
@@ -67,7 +65,7 @@ class VuroDualCameraActivity : BaseSplitActivity(), VideoListener {
     }
 
     override fun onStop() {
-//        releaseCamera()
+        releaseCamera()
         super.onStop()
     }
 
