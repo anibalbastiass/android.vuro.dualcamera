@@ -43,3 +43,4 @@ With Github Actions feature (Top tab), this repository is processing throw CI.
 
 ## Screenshots
 
+![Main](https://raw.githubusercontent.com/anibalbastiass/android.vuro.dualcamera/feature/upload_video_dummy_demo/art/device-2020-02-09-112146.png) ![DualCamera](https://raw.githubusercontent.com/anibalbastiass/android.vuro.dualcamera/feature/upload_video_dummy_demo/art/device-2020-02-09-112350.png)
