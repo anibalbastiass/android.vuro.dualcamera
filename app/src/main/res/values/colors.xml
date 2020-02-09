@@ -9,6 +9,7 @@
     <color name="normalTextColor">#4a4a4a</color>
 
     <color name="grey">#666666</color>
+    <color name="recordContainer">#56252525</color>
 
     <!-- Error view-->
     <color name="white">#ffffff</color>

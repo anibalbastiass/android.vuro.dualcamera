@@ -85,7 +85,7 @@ ext {
     fragmentTestingVersion = '1.1.0'
     mockkVersion = '1.9.3'
 
-    globalvuroDependencies = [
+    globalVuroDependencies = [
             FOREIGN_EXCHANGE_BASE_ENDPOINT: "https://api.exchangeratesapi.io/"
     ]
 

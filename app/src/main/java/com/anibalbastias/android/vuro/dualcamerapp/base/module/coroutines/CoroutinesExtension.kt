@@ -18,9 +18,6 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-/**
- * Created by Anibal Bastias Soto on 2019-12-26.
- */
 
 fun View.onClickOnce(onClick: () -> Unit) {
     setOnClickListener(object : OnClickListener {

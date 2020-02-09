@@ -55,13 +55,13 @@ class VuroAPIModule {
 //            .build()
 //
 //    private fun makeGson(): Gson {
-//        return ForeignExchangeAPIGSONManager.createGsonBuilder()
+//        return VuroAPIGSONManager.createGsonBuilder()
 //            .setLenient()
 //            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
 //            .create()
 //    }
 //
 //    @Provides
-//    fun provideForeignExchangeAPI(@Named("provideForeignExchangeRetrofit") retrofit: Retrofit): ForeignExchangeApiService =
-//        retrofit.create(ForeignExchangeApiService::class.java)
+//    fun provideForeignExchangeAPI(@Named("provideForeignExchangeRetrofit") retrofit: Retrofit): VuroApiService =
+//        retrofit.create(VuroApiService::class.java)
 }

@@ -43,39 +43,6 @@ class VuroApplication : MultiDexApplication() {
     }
 }
 
-internal const val LANG_EN = "en"
-
-internal const val LANG_ES = "es"
-
-private const val PREFS_LANG = "language"
-
-object LanguageHelper {
-    lateinit var prefs: SharedPreferences
-    var language: String
-        get() {
-            return prefs.getString(PREFS_LANG, LANG_EN)!!
-        }
-        set(value) {
-            prefs.edit().putString(PREFS_LANG, value).apply()
-        }
-
-    fun init(ctx: Context){
-        prefs = ctx.getSharedPreferences(PREFS_LANG, Context.MODE_PRIVATE)
-    }
-
-    fun getLanguageConfigurationContext(ctx: Context): Context {
-        val conf = getLanguageConfiguration()
-        return ctx.createConfigurationContext(conf)
-    }
-
-    private fun getLanguageConfiguration(): Configuration {
-        val conf = Configuration()
-        conf.setLocale(Locale.forLanguageTag(language))
-        return conf
-    }
-
-}
-
 private fun buildDagger(context: Context): ApplicationComponent {
     if (VuroApplication.applicationComponent == null) {
         VuroApplication.applicationComponent = DaggerApplicationComponent
@@ -88,10 +55,6 @@ private fun buildDagger(context: Context): ApplicationComponent {
 
 fun Context.appComponent(): ApplicationComponent {
     return buildDagger(this.applicationContext)
-}
-
-fun Fragment.appComponent(): ApplicationComponent {
-    return buildDagger(this.context!!.applicationContext)
 }
 
 fun BaseModuleFragment.appComponent(): ApplicationComponent {
