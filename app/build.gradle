@@ -18,6 +18,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        resValue "string", "video_endpoint", "\"http://mock.api/videos/\""
     }
 
     buildTypes {
@@ -100,11 +102,6 @@ dependencies {
     // When using API in base, some dependencies might have to be re-added for test implementation.
     androidTestImplementation "androidx.appcompat:appcompat:${versions.appcompat}"
 
-
-
-
-
-
     def presentationDependencies = rootProject.ext.vuroDependencies
 
     // Essential libraries
@@ -146,9 +143,6 @@ dependencies {
     implementation presentationDependencies.roomRxJava
     implementation presentationDependencies.lcReactiveStreams
 
-    // Glide
-    api presentationDependencies.glide
-    kapt presentationDependencies.glideCompiler
 
     // Jetpack Navigation
     def archComponentsDep = rootProject.ext.archComponentsDep
@@ -163,34 +157,4 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
-
-    // Test Dependencies
-    def testDependencies = rootProject.ext.testCoreDep
-    testImplementation testDependencies.mockito
-    testImplementation testDependencies.mockitoKotlin
-    testImplementation testDependencies.jUnit
-    testImplementation testDependencies.robolectric
-    testImplementation testDependencies.archTesting
-    testImplementation testDependencies.testCore
-    testImplementation testDependencies.runner
-    testImplementation testDependencies.xTestRules
-    testImplementation testDependencies.extJUnit
-    testImplementation testDependencies.espressoCore
-    testImplementation testDependencies.extTruth
-    testImplementation testDependencies.xEspressoCore
-    testImplementation testDependencies.xEspressoContrib
-    testImplementation testDependencies.espressoIntents
-    testImplementation testDependencies.mockk
-
-    testImplementation "com.squareup.okhttp3:mockwebserver:4.2.1"
-
-    implementation testDependencies.fragment
-    debugImplementation testDependencies.fragmentTesting
-
-    androidTestImplementation testDependencies.testRunner
-    androidTestImplementation testDependencies.testRules
-    androidTestImplementation testDependencies.espressoIntents
-    androidTestImplementation(testDependencies.espressoCore, {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
 }

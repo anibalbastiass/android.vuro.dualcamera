@@ -1,6 +1,6 @@
 package com.anibalbastias.android.vuro.dualcamerapp.base.module
 
-import com.anibalbastias.android.vuro.dualcamerapp.presentation.VuroApplication
+import com.anibalbastias.android.vuro.dualcamerapp.ui.VuroApplication
 import com.anibalbastias.android.vuro.dualcamerapp.domain.base.executor.APIPostExecutionThread
 import com.anibalbastias.android.vuro.dualcamerapp.domain.base.executor.APIThreadExecutor
 import com.anibalbastias.android.vuro.dualcamerapp.base.module.executor.JobExecutor

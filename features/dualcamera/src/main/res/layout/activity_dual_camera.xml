@@ -7,6 +7,7 @@
     android:background="@color/black"
     tools:context=".feature.VuroDualCameraActivity">
 
+
     <FrameLayout
         android:id="@+id/frontVideoView"
         android:layout_width="@dimen/dp0"
@@ -32,9 +33,9 @@
         android:id="@+id/ll_record_container"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp100"
-        android:orientation="vertical"
-        android:gravity="center"
         android:background="@color/recordContainer"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -43,11 +44,11 @@
             android:id="@+id/tv_counter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:layout_gravity="center"
             android:gravity="center"
             android:padding="@dimen/dp10"
-            android:visibility="invisible"/>
+            android:textColor="@color/white"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/btn_record"
@@ -58,5 +59,18 @@
             android:textColor="@color/white" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/oval_semi_transparent"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:padding="10dp"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

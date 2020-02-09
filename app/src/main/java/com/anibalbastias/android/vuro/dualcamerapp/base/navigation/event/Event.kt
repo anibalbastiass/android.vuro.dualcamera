@@ -2,10 +2,6 @@ package com.anibalbastias.android.vuro.dualcamerapp.base.navigation.event
 
 import com.anibalbastias.android.vuro.dualcamerapp.base.view.ResourceState
 
-/**
- * Created by anibalbastias on 2019-08-15.
- */
-
 open class Event<out T>(private val content: T) {
 
     var status = ResourceState.LOADING

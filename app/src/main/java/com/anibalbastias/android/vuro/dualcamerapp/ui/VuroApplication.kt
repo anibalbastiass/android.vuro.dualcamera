@@ -1,25 +1,19 @@
-package com.anibalbastias.android.vuro.dualcamerapp.presentation
+package com.anibalbastias.android.vuro.dualcamerapp.ui
 
 import android.content.Context
-import android.content.SharedPreferences
-import android.content.res.Configuration
-import androidx.fragment.app.Fragment
 import androidx.multidex.MultiDexApplication
 import com.anibalbastias.android.vuro.dualcamerapp.base.view.BaseModuleFragment
 import com.anibalbastias.android.vuro.dualcamerapp.di.component.ApplicationComponent
 import com.anibalbastias.android.vuro.dualcamerapp.di.component.DaggerApplicationComponent
 import com.anibalbastias.android.vuro.dualcamerapp.di.module.ApplicationModule
+import com.anibalbastias.android.vuro.dualcamerapp.ui.util.LanguageHelper
 import com.google.android.play.core.splitcompat.SplitCompat
-import java.util.*
 
 var context: VuroApplication? = null
 fun getAppContext(): VuroApplication {
     return context!!
 }
 
-/**
- * Created by anibalbastias on 2019-11-25.
- */
 
 class VuroApplication : MultiDexApplication() {
 
@@ -29,8 +23,13 @@ class VuroApplication : MultiDexApplication() {
     }
 
     override fun attachBaseContext(base: Context) {
-        LanguageHelper.init(base)
-        val ctx = LanguageHelper.getLanguageConfigurationContext(base)
+        LanguageHelper.init(
+            base
+        )
+        val ctx =
+            LanguageHelper.getLanguageConfigurationContext(
+                base
+            )
         super.attachBaseContext(ctx)
         SplitCompat.install(this)
     }

@@ -26,7 +26,7 @@
         <ImageView
             android:id="@+id/iv_main"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="@dimen/dp200"
             android:src="@drawable/dualcameracar"
             app:layout_constraintTop_toBottomOf="@+id/mainToolbar"
             android:contentDescription="@string/app_name" />

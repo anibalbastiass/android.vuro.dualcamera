@@ -2,7 +2,10 @@ package com.anibalbastias.android.vuro.dualcamerapp.di.module
 
 import com.anibalbastias.android.vuro.BuildConfig
 import com.anibalbastias.android.vuro.R
-import com.anibalbastias.android.vuro.dualcamerapp.presentation.VuroApplication
+import com.anibalbastias.android.vuro.dualcamerapp.data.video.FakeInterceptor
+import com.anibalbastias.android.vuro.dualcamerapp.data.video.VideoApiService
+import com.anibalbastias.android.vuro.dualcamerapp.data.video.VuroPIGSONManager
+import com.anibalbastias.android.vuro.dualcamerapp.ui.VuroApplication
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -24,7 +27,6 @@ class VuroAPIModule {
         const val WRITE_TIMEOUT = 120L
     }
 
-
     @Provides
     @Singleton
     @Named("provideRetrofitHttpClient")
@@ -37,31 +39,33 @@ class VuroAPIModule {
             clientBuilder.addInterceptor(httpLoggingInterceptor)
         }
 
+        clientBuilder.addInterceptor(FakeInterceptor())
+
         clientBuilder.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
         clientBuilder.writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
         clientBuilder.readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
         return clientBuilder.build()
     }
 
-//    @Provides
-//    @Singleton
-//    @Named("provideForeignExchangeRetrofit")
-//    fun provideRetrofit(@Named("provideRetrofitHttpClient") okHttpClient: OkHttpClient): Retrofit =
-//        Retrofit.Builder()
-//            .baseUrl(VuroApplication.appContext.getString(R.string.foreignexchange_endpoint))
-//            .client(okHttpClient)
-//            .addConverterFactory(GsonConverterFactory.create(makeGson()))
-//            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-//            .build()
-//
-//    private fun makeGson(): Gson {
-//        return VuroAPIGSONManager.createGsonBuilder()
-//            .setLenient()
-//            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-//            .create()
-//    }
-//
-//    @Provides
-//    fun provideForeignExchangeAPI(@Named("provideForeignExchangeRetrofit") retrofit: Retrofit): VuroApiService =
-//        retrofit.create(VuroApiService::class.java)
+    @Provides
+    @Singleton
+    @Named("provideVideoRetrofit")
+    fun provideRetrofit(@Named("provideRetrofitHttpClient") okHttpClient: OkHttpClient): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(VuroApplication.appContext.getString(R.string.video_endpoint))
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create(makeGson()))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+
+    private fun makeGson(): Gson {
+        return VuroPIGSONManager.createGsonBuilder()
+            .setLenient()
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            .create()
+    }
+
+    @Provides
+    fun provideVideoAPI(@Named("provideVideoRetrofit") retrofit: Retrofit): VideoApiService =
+        retrofit.create(VideoApiService::class.java)
 }
