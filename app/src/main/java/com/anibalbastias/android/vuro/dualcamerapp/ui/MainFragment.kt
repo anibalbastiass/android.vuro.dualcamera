@@ -11,15 +11,9 @@ import com.anibalbastias.android.vuro.dualcamerapp.base.extension.applyFontForTo
 import com.anibalbastias.android.vuro.dualcamerapp.base.extension.setNoArrowUpToolbar
 import com.anibalbastias.android.vuro.dualcamerapp.base.module.getViewModel
 import com.anibalbastias.android.vuro.dualcamerapp.base.view.BaseModuleFragment
-import com.anibalbastias.android.vuro.dualcamerapp.presentation.LANG_EN
-import com.anibalbastias.android.vuro.dualcamerapp.presentation.LANG_ES
 import com.anibalbastias.android.vuro.dualcamerapp.presentation.appComponent
 import com.anibalbastias.android.vuro.dualcamerapp.presentation.getAppContext
 
-
-/**
- * Created by anibalbastias on 2019-11-25.
- */
 
 open class MainFragment : BaseModuleFragment() {
 
@@ -36,8 +30,6 @@ open class MainFragment : BaseModuleFragment() {
                     R.id.btn_load_dualcamera -> loadAndLaunchModule(
                         moduleDualCamera
                     )
-                    R.id.lang_en -> loadAndSwitchLanguage(LANG_EN)
-                    R.id.lang_es -> loadAndSwitchLanguage(LANG_ES)
                 }
             }
         }
@@ -77,8 +69,6 @@ open class MainFragment : BaseModuleFragment() {
     private fun setupClickListener() {
         with(binding) {
             btnLoadDualcamera.setOnClickListener(clickListener)
-            langEn.setOnClickListener(clickListener)
-            langEs.setOnClickListener(clickListener)
         }
     }
 

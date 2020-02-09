@@ -1,3 +1,7 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="content_text" translatable="false">This is a dynamic feature named \DualCamera\n</string>
+
+    <string name="app_record" tools:ignore="ExtraTranslation" translatable="false">Record Video</string>
+    <string name="time_hours_minutes_seconds_formatter" translatable="false">%02d:%02d:%02d</string>
+    <string name="time_minutes_seconds_formatter" translatable="false">%02d:%02d</string>
 </resources>

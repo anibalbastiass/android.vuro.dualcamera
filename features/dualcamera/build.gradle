@@ -1,4 +1,5 @@
 apply plugin: 'com.android.dynamic-feature'
+
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
@@ -31,4 +32,17 @@ dependencies {
 
     androidTestImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}"
 
+    // Essential libraries
+    def presentationDependencies = rootProject.ext.vuroDependencies
+    implementation presentationDependencies.kotlinStdlib
+    implementation presentationDependencies.androidCompatv7
+    implementation presentationDependencies.constraintLayout
+    implementation presentationDependencies.androidArchExt
+    implementation presentationDependencies.androidDesign
+    implementation presentationDependencies.androidSupportv4
+    implementation presentationDependencies.androidCardView
+    implementation presentationDependencies.androidRecyclerView
+
+    // Camera recorder lib
+    implementation 'com.github.MasayukiSuda:CameraRecorder-android:v0.1.5'
 }

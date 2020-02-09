@@ -5,9 +5,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlin.coroutines.CoroutineContext
 
-/**
- * Created by Anibal Bastias Soto on 2019-12-26.
- */
 
 class LifecycleManagedCoroutineScope(
     val lifecycleCoroutineScope: LifecycleCoroutineScope,
