@@ -13,6 +13,23 @@ android {
         targetSdkVersion versions.targetSdk
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 androidExtensions {
@@ -43,6 +60,13 @@ dependencies {
     implementation presentationDependencies.androidCardView
     implementation presentationDependencies.androidRecyclerView
 
+    // ViewModel and LiveData
+    implementation presentationDependencies.androidArchExt
+    kapt presentationDependencies.androidArchCompiler
+
     // Camera recorder lib
     implementation 'com.github.MasayukiSuda:CameraRecorder-android:v0.1.5'
+
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.2.1'
 }

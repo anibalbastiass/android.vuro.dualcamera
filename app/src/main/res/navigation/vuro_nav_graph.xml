@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/foreign_exchange_search_nav_graph"
-    app:startDestination="@id/currenciesFragment"
+    app:startDestination="@id/mainFragment"
     tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/currenciesFragment"
+        android:id="@+id/mainFragment"
         android:name="com.anibalbastias.android.vuro.dualcamerapp.ui.MainFragment"
-        android:label="CurrenciesFragment"
+        android:label="MainFragment"
         tools:layout="@layout/fragment_main">
 
     </fragment>

@@ -52,10 +52,9 @@ class MainActivity : BaseSplitActivity() {
         when (requestCode) {
             CAMERA_PERMISSION_REQUEST_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    toast("camera permission has been grunted.")
+                    toast(getString(R.string.camera_permission_grunted))
                 } else {
-                    toast("[WARN] camera permission is not grunted.")
-
+                    toast(getString(R.string.camera_permission_not_grunted))
                 }
             }
         }

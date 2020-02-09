@@ -23,12 +23,20 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+        <ImageView
+            android:id="@+id/iv_main"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/dualcameracar"
+            app:layout_constraintTop_toBottomOf="@+id/mainToolbar"
+            android:contentDescription="@string/app_name" />
+
         <Button
             android:id="@+id/btn_load_dualcamera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="@dimen/dp8"
+            android:layout_marginEnd="@dimen/dp8"
             android:backgroundTint="@color/colorAccent"
             android:text="@string/load_feature_dualcamera"
             android:textColor="@color/white"
@@ -37,6 +45,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mainToolbar"
             app:layout_constraintVertical_chainStyle="spread" />
+
+        <TextView
+            android:id="@+id/tv_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hint"
+            android:gravity="center"
+            android:padding="@dimen/dp10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_load_dualcamera" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

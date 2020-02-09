@@ -12,8 +12,8 @@ fun Context.formatTime(millis: Long): String {
 
     return when (hours) {
         0L -> String.format(
-            getString(R.string.time_minutes_seconds_formatter)!!, minutes, seconds
+            getString(R.string.time_minutes_seconds_formatter), minutes, seconds
         )
-        else -> getString(R.string.time_hours_minutes_seconds_formatter, hours, minutes, seconds)!!
+        else -> getString(R.string.time_hours_minutes_seconds_formatter, hours, minutes, seconds)
     }
 }
