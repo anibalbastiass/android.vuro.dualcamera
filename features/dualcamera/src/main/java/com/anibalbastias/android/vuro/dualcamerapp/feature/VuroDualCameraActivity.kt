@@ -4,12 +4,13 @@ import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Environment
 import android.os.Handler
-import android.provider.MediaStore
+import android.provider.MediaStore.Video
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -18,7 +19,8 @@ import com.anibalbastias.android.vuro.dualcamerapp.base.extension.gone
 import com.anibalbastias.android.vuro.dualcamerapp.base.extension.invisible
 import com.anibalbastias.android.vuro.dualcamerapp.base.extension.visible
 import com.anibalbastias.android.vuro.dualcamerapp.base.view.BaseSplitActivity
-import com.anibalbastias.android.vuro.dualcamerapp.feature.VuroTouchVideoView.TouchListener
+import com.anibalbastias.android.vuro.dualcamerapp.feature.widget.VuroTouchVideoView
+import com.anibalbastias.android.vuro.dualcamerapp.feature.widget.VuroTouchVideoView.TouchListener
 import com.anibalbastias.android.vuro.dualcamerapp.util.formatTime
 import com.daasuu.camerarecorder.CameraRecordListener
 import com.daasuu.camerarecorder.CameraRecorder
@@ -30,7 +32,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class SquareActivity : BaseSplitActivity() {
+class VuroDualCameraActivity : BaseSplitActivity() {
 
     private var cameraWidth = 1280
     private var cameraHeight = 720
@@ -69,7 +71,19 @@ class SquareActivity : BaseSplitActivity() {
             Handler().postDelayed({
                 btn_record.performClick()
             }, 100)
+
+            Handler().postDelayed({
+                uploadAndRemoveVideos()
+            }, 3000)
         }
+    }
+
+    private fun uploadAndRemoveVideos() {
+        // Simulate Upload Video from Use Case
+
+        // Remove Video
+        removeLatestVideos(this, lastestVideoFilePath)
+        removeLatestVideos(this, lastestVideoFilePath2)
     }
 
     override fun onSuccessfulLoad(moduleName: String, launch: Boolean) {
@@ -145,7 +159,10 @@ class SquareActivity : BaseSplitActivity() {
 
             wrap_view?.removeAllViews()
             vuroTouchVideoView = null
-            vuroTouchVideoView = VuroTouchVideoView(applicationContext)
+            vuroTouchVideoView =
+                VuroTouchVideoView(
+                    applicationContext
+                )
             vuroTouchVideoView!!.setTouchListener(object : TouchListener {
                 override fun onTouch(event: MotionEvent?, width: Int, height: Int) {
                     if (cameraRecorder == null) return
@@ -160,7 +177,10 @@ class SquareActivity : BaseSplitActivity() {
         runOnUiThread {
             wrap_view2?.removeAllViews()
             vuroTouchVideoView2 = null
-            vuroTouchVideoView2 = VuroTouchVideoView(applicationContext)
+            vuroTouchVideoView2 =
+                VuroTouchVideoView(
+                    applicationContext
+                )
             vuroTouchVideoView2!!.setTouchListener(object : TouchListener {
                 override fun onTouch(event: MotionEvent?, width: Int, height: Int) {
                     if (cameraRecorder2 == null) return
@@ -183,6 +203,7 @@ class SquareActivity : BaseSplitActivity() {
                 }
 
                 override fun onRecordComplete() {
+                    lastestVideoFilePath = filepath!!
                     exportMp4ToGallery(
                         applicationContext,
                         filepath
@@ -220,6 +241,8 @@ class SquareActivity : BaseSplitActivity() {
                 }
 
                 override fun onRecordComplete() {
+                    lastestVideoFilePath2 = filepath2!!
+
                     exportMp4ToGallery(
                         applicationContext,
                         filepath2
@@ -249,11 +272,12 @@ class SquareActivity : BaseSplitActivity() {
             context: Context,
             filePath: String?
         ) {
+
             val values = ContentValues(2)
-            values.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4")
-            values.put(MediaStore.Video.Media.DATA, filePath)
+            values.put(Video.Media.MIME_TYPE, "video/mp4")
+            values.put(Video.Media.DATA, filePath)
             context.contentResolver.insert(
-                MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+                Video.Media.EXTERNAL_CONTENT_URI,
                 values
             )
             context.sendBroadcast(
@@ -264,20 +288,39 @@ class SquareActivity : BaseSplitActivity() {
             )
         }
 
+        var lastestVideoFilePath: String = ""
+        var lastestVideoFilePath2: String = ""
+
         val videoFilePath: String
             @SuppressLint("SimpleDateFormat")
             get() = androidMoviesFolder.absolutePath + "/" + SimpleDateFormat(
                 "yyyyMM_dd-HHmmss"
-            ).format(Date()) + "cameraRecorder_front.mp4"
+            ).format(Date()) + "_VuroCamera_Front.mp4"
 
         val videoFilePath2: String
             @SuppressLint("SimpleDateFormat")
             get() = androidMoviesFolder.absolutePath + "/" + SimpleDateFormat(
                 "yyyyMM_dd-HHmmss"
-            ).format(Date()) + "cameraRecorder_back.mp4"
+            ).format(Date()) + "_VuroCamera_Back.mp4"
 
         private val androidMoviesFolder: File
             get() = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)
 
+    }
+
+    private fun removeLatestVideos(
+        context: Context,
+        filePath: String
+    ) {
+        val array = arrayListOf<String>()
+        array.add(filePath)
+        MediaScannerConnection.scanFile(
+            this,
+            array.toTypedArray(), null
+        ) { path, uri ->
+            run {
+                context.contentResolver.delete(uri, null, null)
+            }
+        }
     }
 }

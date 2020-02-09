@@ -1,4 +1,4 @@
-package com.anibalbastias.android.vuro.dualcamerapp.feature
+package com.anibalbastias.android.vuro.dualcamerapp.feature.widget
 
 import android.content.Context
 import android.opengl.GLSurfaceView

@@ -25,7 +25,7 @@
         android:required="true" />
 
     <application android:fullBackupContent="true">
-        <activity android:name=".feature.SquareActivity" >
+        <activity android:name=".feature.VuroDualCameraActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
